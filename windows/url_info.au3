@@ -1,14 +1,15 @@
 #include <IE.au3>
 
 If WinExists("[CLASS:IEFrame]") Then
-	Local $iHandle = WinGetHandle("[Class:IEFrame]")
+	Local $iHandle = WinWait("[CLASS:IEFrame]", "", 5)
 	WinActivate($iHandle)
-	Sleep(2000)
-	WinWaitActive("[Class:IEFrame]", "", 4)
+	;WinWaitActive($iHandle, "", 4)
+	Sleep(5000)
 	Send("!d")
 	Send("^a")
 	Send("^c")
-	MsgBox(0, "URL", "IE Browser URL "&ClipGet(), 5)
+	$url = _IEPropertyGet($iHandle, "locationurl")
+	MsgBox(0, "URL", "IE Browser URL " &ClipGet(), 5)
 Else
 	MsgBox(0, "", "IE Doesn't Exist", 3)
 EndIf
@@ -16,13 +17,29 @@ EndIf
 Sleep(3000)
 
 If WinExists("[CLASS:MozillaWindowClass]") Then
-	Local $wHandle = WinGetHandle("[Class:MozillaWindowClass]")
+	Local $wHandle = WinWait("[CLASS:MozillaWindowClass]", "", 5)
 	WinActivate($wHandle)
-	Sleep(2000)
+	;WinWaitActive("[Class:MozillaWindowClass]", "", 4)
+	Sleep(5000)
 	Send("^l")
 	Send("^a")
 	Send("^c")
 	MsgBox(0, "URL", "Mozilla Browser URL "&ClipGet(), 5)
 Else
 	MsgBox(0, "", "Mozilla Window Doesn't Exist", 3)
+EndIf
+
+Sleep(3000)
+
+If WinExists("[CLASS:Chrome_WidgetWin_1]") Then
+	Local $cHandle = WinWait("[CLASS:Chrome_WidgetWin_1]", "", 5)
+	WinActivate($cHandle)
+	;WinWaitActive("[Class:Chrome_WidgetWin_1]", "", 4)
+	Sleep(5000)
+	Send("^l")
+	Send("^a")
+	Send("^c")
+	MsgBox(0, "URL", "Chrome Browser URL "&ClipGet(), 5)
+Else
+	MsgBox(0, "", "Chrome Window Doesn't Exist", 3)
 EndIf
