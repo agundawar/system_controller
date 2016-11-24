@@ -1,0 +1,17 @@
+
+
+To disable notification center
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
+
+To remove all menu bar icons
+deleting .menu files from /System/Library/CoreServices/Menu\ Extras
+
+To remove spotlight app
+sudo mv Spotlight.app Spotlight.app.bkp
+sudo killall Spotlight
+
+To modify dock options
+/Users/testu/Library/Preferences/com.apple.dock.plist
+
+To remove options from Apple Menu
+/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Resources/English.lproj/StandardMenus.nib/objects.xib
